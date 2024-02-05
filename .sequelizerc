@@ -1,0 +1,10 @@
+module.exports = {
+    //Le decimos donde encontrará la configuracion, ya que aqui sabra la conexion a la base de datos, ya que el cli necesita su propia conexion 
+    'config': './db/config.js',
+    //le decimos donde va a encontrar los modelos
+    'models-path': './db/models/',
+    //Le decimos donde va a encontrar las migraciones
+    'migrations-path': './db/migrations/',
+    //set de datos/semillas de informacion que es como una carga masiva de informacion
+    'seeders-path': './db/seeders/',
+}

@@ -1,0 +1,49 @@
+version: '3.3'
+
+services:
+  #Nombre del servicio
+  postgres:
+    #imagen y su version
+    image: postgres:13
+    #Variables de ambiente: Configuracion que el contenedor va a recibir(SE PONEN EN MAYUSCULA)
+    environment:
+      - POSTGRES_DB=my_store
+      - POSTGRES_USER=daniel
+      - POSTGRES_PASSWORD=admin123
+    #Puerto que va a tomar, por defecto postgres toma el puerto 5432
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - 5050:80
+
+  # mysql: 
+  #   image: mysql:5
+  #   environment:
+  #     - MYSQL_DATABASE=my_store
+  #     - MYSQL_USER=root
+  #     - MYSQL_ROOT_PASSWORD=admin123
+  #     - MYSQL_PORT=3306
+  #   ports:
+  #     - 3306:3306
+  #   volumes:
+  #     - ./mysql_data:/var/lib/mysql
+
+  # #Visualizador grafico de mysql
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=admin123
+  #     #El nombre del host debe ser igual al nombre del servicio de mysql en docker
+  #     - PMA_HOST=mysql
+  #   ports: 
+  #     - 8080:80
+
+
