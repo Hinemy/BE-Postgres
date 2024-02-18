@@ -16,9 +16,8 @@ function boomErrorHandler(err, req, res, next) {
   if (err.isBoom) {
     const { output } = err;
     res.status(output.statusCode).json(output.payload);
-  } else {
-    next(err);
-  }
+  } 
+  next(err);
 }
 
 //Middleware para validar si el orm lanzó un error, usamos el ValidationError de sequelize para saber si viene un error
@@ -27,10 +26,10 @@ function ormErrorHandler(err, req, res, next) {
     res.status(409).json({
       statusCode: 409,
       message: err.name,
-      errors: err.errors,
-      data: err.data
-    })
+      errors: err.errors
+    }); 
   }
+  next(err); 
 }
 
 module.exports = { logErrors, errorHandler, boomErrorHandler, ormErrorHandler }

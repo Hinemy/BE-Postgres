@@ -3,7 +3,6 @@ const express = require('express');
 const UserService = require('./../services/user.service');
 const validatorHandler = require('./../middlewares/validator.handler');
 const { updateUserSchema, createUserSchema, getUserSchema } = require('./../schemas/user.schema');
-let newUser = ""; 
 
 const router = express.Router();
 //Instancia de los servicios
@@ -36,7 +35,7 @@ router.post('/',
   async (req, res, next) => {
     try {
       const body = req.body; 
-      newUser = await service.create(body);
+      const newUser = await service.create(body);
       res.status(201).json(newUser);  
     } catch (error) {
       next(error);
